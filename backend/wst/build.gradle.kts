@@ -18,19 +18,14 @@ repositories {
 }
 
 dependencies {
-    // Web API
     implementation("org.springframework.boot:spring-boot-starter-web")
-
-    // JPA (Database ORM)
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-
-    // Validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
+r
+    runtimeOnly("com.mysql:mysql-connector-j")
 
-    // PostgreSQL DRIVER (FIXED)
-    runtimeOnly("org.postgresql:postgresql")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-    // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
