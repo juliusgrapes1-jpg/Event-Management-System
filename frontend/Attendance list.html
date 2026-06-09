@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Event Attendance Sheet</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:30px auto;
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+}
+
+h1{text-align:center;}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:8px;
+    border:none;
+}
+
+.attendance-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#2563eb;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border:1px solid #334155;
+}
+
+.controls{
+    margin-top:20px;
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+.btn{
+    background:#2563eb;
+    color:white;
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>EVENT ATTENDANCE SHEET</h1>
+
+<!-- EVENT INFO -->
+<input type="text" id="eventName" placeholder="Event Name">
+<input type="date" id="eventDate">
+
+<table class="attendance-table">
+<thead>
+<tr>
+<th>NAME</th>
+<th>BIRTHDATE</th>
+<th>EMAIL</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td contenteditable></td>
+<td contenteditable></td>
+<td contenteditable></td>
+</tr>
+<tr>
+<td contenteditable></td>
+<td contenteditable></td>
+<td contenteditable></td>
+</tr>
+<tr>
+<td contenteditable></td>
+<td contenteditable></td>
+<td contenteditable></td>
+</tr>
+</tbody>
+</table>
+
+<div class="controls">
+<button class="btn" onclick="saveAttendance()">Save</button>
+<button class="btn" onclick="clearAttendance()">Clear</button>
+<a href="Homepage.html" class="btn">Back</a>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
