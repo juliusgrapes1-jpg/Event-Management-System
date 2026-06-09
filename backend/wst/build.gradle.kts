@@ -27,11 +27,8 @@ dependencies {
     // Validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
-    // PostgreSQL DRIVER (IMPORTANT FIX)
+    // PostgreSQL DRIVER (FIXED)
     runtimeOnly("org.postgresql:postgresql")
-
-    // Dev tools (optional for local dev only)
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
