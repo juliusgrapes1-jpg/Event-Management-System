@@ -1,8 +1,5 @@
 const BASE_URL = "https://event-management-system-2-ac20.onrender.com";
 
-/* =========================
-   REGISTER (UNCHANGED)
-========================= */
 window.registerUser = async function () {
 
     const username = document.getElementById("username").value;
@@ -25,9 +22,6 @@ window.registerUser = async function () {
 };
 
 
-/* =========================
-   LOGIN (UNCHANGED)
-========================= */
 window.validateLogin = async function () {
 
     const username = document.getElementById("username").value;
@@ -49,9 +43,7 @@ window.validateLogin = async function () {
 };
 
 
-/* =========================
-   SAVE ATTENDANCE (FIXED)
-========================= */
+
 window.saveAttendance = async function () {
 
     const rows = document.querySelectorAll(".attendance-table tbody tr");
@@ -100,9 +92,7 @@ window.saveAttendance = async function () {
 };
 
 
-/* =========================
-   LOAD RECORDS
-========================= */
+
 window.loadRecords = async function () {
 
     const table = document.getElementById("recordsTable");
@@ -127,9 +117,7 @@ window.loadRecords = async function () {
 };
 
 
-/* =========================
-   SEARCH
-========================= */
+
 window.searchRecords = function () {
 
     const filter = document.getElementById("searchInput").value.toLowerCase();
@@ -142,17 +130,12 @@ window.searchRecords = function () {
 };
 
 
-/* =========================
-   CLEAR
-========================= */
+
 window.clearAttendance = function () {
     document.querySelectorAll("td[contenteditable]").forEach(td => td.innerText = "");
 };
 
 
-/* =========================
-   AUTO LOAD
-========================= */
 window.addEventListener("load", () => {
     if (document.getElementById("recordsTable")) {
         loadRecords();
