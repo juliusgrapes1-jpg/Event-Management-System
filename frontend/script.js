@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const BASE_URL = "https://event-management-system-xxxx.onrender.com";
+    const BASE_URL = "https://event-management-system-2-ac20.onrender.com";
 
     window.registerUser = async function () {
 
@@ -16,12 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(`${BASE_URL}/api/register`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, email, password })
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    email: email,
+                    password: password
+                })
             });
 
             const data = await response.json();
-            alert(data.message);
+
+            if (data.success) {
+                alert("Registered successfully!");
+                window.location.href = "index.html";
+            } else {
+                alert(data.message || "Registration failed");
+            }
 
         } catch (error) {
             console.error("Register error:", error);
@@ -29,16 +41,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    // ======================
+    // LOGIN
+    // ======================
     window.validateLogin = async function () {
 
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
+        if (!username || !password) {
+            alert("Please fill all fields");
+            return;
+        }
+
         try {
             const response = await fetch(`${BASE_URL}/api/login`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password })
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
             });
 
             const data = await response.json();
@@ -46,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data.success) {
                 window.location.href = "Homepage.html";
             } else {
-                document.getElementById("error-msg").innerText = data.message;
+                alert(data.message || "Invalid credentials");
             }
 
         } catch (error) {
@@ -54,89 +79,5 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Failed to connect to server");
         }
     };
-
-    window.saveAttendance = async function () {
-
-        const rows = document.querySelectorAll(".attendance-table tbody tr");
-
-        const eventName = document.getElementById("eventName").value || "General Event";
-        const eventDate = document.getElementById("eventDate").value || "";
-
-        const attendanceList = [];
-
-        rows.forEach(row => {
-
-            const cells = row.querySelectorAll("td");
-
-            const name = cells[0].innerText.trim();
-            const birthdate = cells[1].innerText.trim();
-            const email = cells[2].innerText.trim();
-
-            if (name && birthdate && email) {
-                attendanceList.push({
-                    event: eventName,
-                    eventDate: eventDate,
-                    name,
-                    birthdate,
-                    email
-                });
-            }
-        });
-
-        const response = await fetch(`${BASE_URL}/api/attendance`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(attendanceList)
-        });
-
-        const data = await response.json();
-        alert(data.message);
-
-        window.location.href = "AttendanceRecords.html";
-    };
-
-    window.loadRecords = async function () {
-
-        const table = document.getElementById("recordsTable");
-        if (!table) return;
-
-        const response = await fetch(`${BASE_URL}/api/attendance`);
-        const data = await response.json();
-
-        table.innerHTML = "";
-
-        data.forEach(item => {
-            table.innerHTML += `
-                <tr>
-                    <td>${item.event}</td>
-                    <td>${item.eventDate}</td>
-                    <td>${item.name}</td>
-                    <td>${item.birthdate}</td>
-                    <td>${item.email}</td>
-                </tr>
-            `;
-        });
-    };
-
-    window.searchRecords = function () {
-
-        const filter = document.getElementById("searchInput").value.toLowerCase();
-        const rows = document.querySelectorAll("#recordsTable tr");
-
-        rows.forEach(row => {
-            const name = row.cells[2]?.innerText.toLowerCase() || "";
-            row.style.display = name.includes(filter) ? "" : "none";
-        });
-    };
-
-    window.clearAttendance = function () {
-        document.querySelectorAll("td[contenteditable]").forEach(td => td.innerText = "");
-    };
-
-    window.addEventListener("load", () => {
-        if (document.getElementById("recordsTable")) {
-            loadRecords();
-        }
-    });
 
 });
