@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-
 const BASE_URL = "https://event-management-system-2-ac20.onrender.com";
 
 /* =========================
@@ -145,7 +143,7 @@ window.searchRecords = function () {
 
 
 /* =========================
-   CLEAR TABLE
+   CLEAR
 ========================= */
 window.clearAttendance = function () {
     document.querySelectorAll("td[contenteditable]").forEach(td => td.innerText = "");
@@ -153,12 +151,10 @@ window.clearAttendance = function () {
 
 
 /* =========================
-   AUTO LOAD RECORDS
+   AUTO LOAD
 ========================= */
 window.addEventListener("load", () => {
     if (document.getElementById("recordsTable")) {
         loadRecords();
     }
-});
-
 });
