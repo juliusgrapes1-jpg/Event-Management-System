@@ -19,6 +19,7 @@ public class AttendanceController {
         this.repository = repository;
     }
 
+    // SAVE MULTIPLE ATTENDANCE (your current frontend supports list)
     @PostMapping
     public Map<String, Object> saveAttendance(@RequestBody List<Attendance> list) {
 
@@ -32,7 +33,7 @@ public class AttendanceController {
 
         } catch (Exception e) {
             response.put("success", false);
-            response.put("message", "Error saving attendance");
+            response.put("message", e.getMessage()); // FIXED: show real error
         }
 
         return response;
