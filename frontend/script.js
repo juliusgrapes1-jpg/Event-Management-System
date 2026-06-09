@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const BASE_URL = "https://YOUR-RENDER-APP.onrender.com";
+    const BASE_URL = "https://event-management-system-xxxx.onrender.com";
 
     window.registerUser = async function () {
 
